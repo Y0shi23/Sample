@@ -7,16 +7,14 @@ import java.util.Random;
  */
 public class Opponent {
 
-    private int ran;
     private Random rnd;
 
     public Opponent() {
         // TODO 自動生成されたコンストラクター・スタブ
-        this.ran = ran;
         this.rnd = new Random();
     }
 
-    public int getRnd(){
+    public int getRnd() {
         return rnd.nextInt(3);
     }
 }

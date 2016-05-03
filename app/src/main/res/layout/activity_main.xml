@@ -33,4 +33,12 @@
         android:layout_alignTop="@+id/button01"
         android:layout_toEndOf="@+id/button01"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="パー"
+        android:id="@+id/button03"
+        android:layout_alignTop="@+id/button02"
+        android:layout_toEndOf="@+id/button02"/>
+
 </RelativeLayout>

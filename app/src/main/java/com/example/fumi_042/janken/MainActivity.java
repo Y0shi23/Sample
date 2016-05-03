@@ -16,17 +16,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Button> buttonList = new ArrayList<Button>(){
+        List<Button> buttonLists = new ArrayList<Button>(){
             {
                 add((Button)findViewById(R.id.button01));
                 add((Button)findViewById(R.id.button02));
+                add((Button)findViewById(R.id.button03));
             }
         };
-        buttonList.get(0).setOnClickListener(mOnClickListener01);
-        buttonList.get(1).setOnClickListener(mOnClickListener02);
+        buttonLists.get(0).setOnClickListener(setMyRock);
+        buttonLists.get(1).setOnClickListener(setMyScissors);
+        buttonLists.get(2).setOnClickListener(setMyPaper);
     }
 
-    private View.OnClickListener mOnClickListener01 = new View.OnClickListener() {
+    private View.OnClickListener setMyRock = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private View.OnClickListener mOnClickListener02 = new View.OnClickListener() {
+    private View.OnClickListener setMyScissors = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private View.OnClickListener mOnClickListener03 = new View.OnClickListener() {
+    private View.OnClickListener setMyPaper = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
