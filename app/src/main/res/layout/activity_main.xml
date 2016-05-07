@@ -16,29 +16,40 @@
         android:text="Hello World!"
         android:id="@+id/textview"/>
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/gu"
         android:id="@+id/button01"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="145dp"/>
+        android:layout_marginBottom="145dp"
+        android:background="@drawable/select_rock"/>
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="チョキ"
         android:id="@+id/button02"
+        android:background="@drawable/select_scissors"
         android:layout_alignTop="@+id/button01"
-        android:layout_toEndOf="@+id/button01"/>
+        android:layout_centerHorizontal="true"/>
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="パー"
         android:id="@+id/button03"
+        android:background="@drawable/paper"
         android:layout_alignTop="@+id/button02"
-        android:layout_toEndOf="@+id/button02"/>
+        android:layout_alignParentEnd="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/button01"
+        android:layout_toStartOf="@+id/button03"
+        android:layout_marginBottom="43dp"/>
 
 </RelativeLayout>
