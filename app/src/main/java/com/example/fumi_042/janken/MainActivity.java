@@ -24,89 +24,102 @@ public class MainActivity extends AppCompatActivity {
                 add((ImageButton)findViewById(R.id.button03));
             }
         };
+        // クリックイベント
         buttonLists.get(0).setOnClickListener(setMyRock);
         buttonLists.get(1).setOnClickListener(setMyScissors);
         buttonLists.get(2).setOnClickListener(setMyPaper);
     }
+
     // グーのボタンを押した
     private View.OnClickListener setMyRock = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
-            setMyRock(v);
+            ImageView im = (ImageView)findViewById(R.id.imageView);
+            im.setImageResource(R.drawable.rock);
+            setOppMyRock(v);
         }
     };
+
     // チョキのボタンを押した
     private View.OnClickListener setMyScissors = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
-            setMyScissors(v);
+            ImageView im = (ImageView)findViewById(R.id.imageView);
+            im.setImageResource(R.drawable.scissors);
+            setOppMyScissors(v);
         }
     };
+
     // パーのボタンを押した
     private View.OnClickListener setMyPaper = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
-            setMyScissors(v);
+            ImageView im = (ImageView)findViewById(R.id.imageView);
+            im.setImageResource(R.drawable.paper);
+            setOppMyPaper(v);
         }
     };
 
-    private void setMyRock(View v){
-        TextView tv = (TextView)findViewById(R.id.textview);
-        ImageView im = (ImageView)findViewById(R.id.imageView);
+    private void setOppMyRock(View v){
+        TextView tv = (TextView)findViewById(R.id.textView);
+        ImageView opp_im = (ImageView)findViewById(R.id.imageView2);
+
         Opponent opp = new Opponent();
 
         if(opp.getRnd() == 0){
-            im.setImageResource(R.drawable.rock);
-            tv.setText("グー：あいこ");
+            opp_im.setImageResource(R.drawable.rock);
+            tv.setText("あいこ");
         }
         else if(opp.getRnd() == 1){
-            im.setImageResource(R.drawable.scissors);
-            tv.setText("チョキ：勝ち");
+            opp_im.setImageResource(R.drawable.scissors);
+            tv.setText("勝ち");
         }
         else if(opp.getRnd() == 2){
-            im.setImageResource(R.drawable.rock);
-            tv.setText("パー：負け");
+            opp_im.setImageResource(R.drawable.paper);
+            tv.setText("負け");
         }
     }
 
-    private void setMyScissors(View v){
-        TextView tv = (TextView)findViewById(R.id.textview);
-        ImageView im = (ImageView)findViewById(R.id.imageView);
+    private void setOppMyScissors(View v){
+        TextView tv = (TextView)findViewById(R.id.textView);
+        ImageView opp_im = (ImageView)findViewById(R.id.imageView2);
+
         Opponent opp = new Opponent();
 
         if(opp.getRnd() == 0){
-            im.setImageResource(R.drawable.rock);
-            tv.setText("グー：負け");
+            opp_im.setImageResource(R.drawable.rock);
+            tv.setText("負け");
         }
         else if(opp.getRnd() == 1){
-            im.setImageResource(R.drawable.scissors);
-            tv.setText("チョキ：あいこ");
+            opp_im.setImageResource(R.drawable.scissors);
+            tv.setText("あいこ");
         }
         else if(opp.getRnd() == 2){
-            im.setImageResource(R.drawable.paper);
-            tv.setText("パー：勝ち");
+            opp_im.setImageResource(R.drawable.paper);
+            tv.setText("勝ち");
         }
     }
 
-    private void setMyPaper(View v){
-        TextView tv = (TextView)findViewById(R.id.textview);
-        ImageView im = (ImageView)findViewById(R.id.imageView);
+    private void setOppMyPaper(View v){
+        TextView tv = (TextView)findViewById(R.id.textView);
+        ImageView opp_im = (ImageView)findViewById(R.id.imageView2);
+
         Opponent opp = new Opponent();
 
         if(opp.getRnd() == 0){
-            im.setImageResource(R.drawable.rock);
-            tv.setText("グー：勝ち");
+            opp_im.setImageResource(R.drawable.rock);
+            tv.setText("勝ち");
         }
         else if(opp.getRnd() == 1){
-            im.setImageResource(R.drawable.scissors);
-            tv.setText("チョキ：負け");
+            opp_im.setImageResource(R.drawable.scissors);
+            tv.setText("負け");
         }
         else if(opp.getRnd() == 2){
-            im.setImageResource(R.drawable.paper);
-            tv.setText("パー：あいこ");
+            opp_im.setImageResource(R.drawable.paper);
+            tv.setText("あいこ");
         }
     }
 }
