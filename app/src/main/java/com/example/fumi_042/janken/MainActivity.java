@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             //実行したいコード
             ImageView im = (ImageView)findViewById(R.id.imageView);
             im.setImageResource(R.drawable.rock);
-            setOppMyRock(v);
+            setOppHand(v);
         }
     };
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             //実行したいコード
             ImageView im = (ImageView)findViewById(R.id.imageView);
             im.setImageResource(R.drawable.scissors);
-            setOppMyScissors(v);
+            setOppHand(v);
         }
     };
 
@@ -59,67 +59,65 @@ public class MainActivity extends AppCompatActivity {
             //実行したいコード
             ImageView im = (ImageView)findViewById(R.id.imageView);
             im.setImageResource(R.drawable.paper);
-            setOppMyPaper(v);
+            setOppHand(v);
         }
     };
 
-    private void setOppMyRock(View v){
-        TextView tv = (TextView)findViewById(R.id.textView);
-        ImageView opp_im = (ImageView)findViewById(R.id.imageView2);
-
+    // 相手の手をランダムで決める
+    private void setOppHand(View v){
         Opponent opp = new Opponent();
+        int cpuhand = opp.getRnd();
 
-        if(opp.getRnd() == 0){
-            opp_im.setImageResource(R.drawable.rock);
-            tv.setText("あいこ");
-        }
-        else if(opp.getRnd() == 1){
-            opp_im.setImageResource(R.drawable.scissors);
-            tv.setText("勝ち");
-        }
-        else if(opp.getRnd() == 2){
-            opp_im.setImageResource(R.drawable.paper);
-            tv.setText("負け");
+        switch (v.getId()){
+            case R.id.button01:
+                setOppPicture(cpuhand);
+                getWinOrLose(0, cpuhand);
+                break;
+
+            case R.id.button02:
+                setOppPicture(cpuhand);
+                getWinOrLose(1, cpuhand);
+                break;
+
+            case R.id.button03:
+                setOppPicture(cpuhand);
+                getWinOrLose(2, cpuhand);
+                break;
         }
     }
 
-    private void setOppMyScissors(View v){
-        TextView tv = (TextView)findViewById(R.id.textView);
+    // 相手の手をランダムに決めて表示させる
+    private void setOppPicture(int m){
+        int cpuhand = m;
         ImageView opp_im = (ImageView)findViewById(R.id.imageView2);
 
-        Opponent opp = new Opponent();
-
-        if(opp.getRnd() == 0){
+        if(cpuhand == 0){
             opp_im.setImageResource(R.drawable.rock);
-            tv.setText("負け");
         }
-        else if(opp.getRnd() == 1){
+        else if(cpuhand == 1){
             opp_im.setImageResource(R.drawable.scissors);
-            tv.setText("あいこ");
         }
-        else if(opp.getRnd() == 2){
+        else if(cpuhand == 2){
             opp_im.setImageResource(R.drawable.paper);
-            tv.setText("勝ち");
         }
     }
 
-    private void setOppMyPaper(View v){
+    // 勝敗を判定するメソッド
+    private void getWinOrLose(int m, int n){
         TextView tv = (TextView)findViewById(R.id.textView);
-        ImageView opp_im = (ImageView)findViewById(R.id.imageView2);
 
-        Opponent opp = new Opponent();
+        int userhand = m;
+        int cpuhand = n;
+        int win_or_lose = ((userhand - cpuhand) + 3) % 3;
 
-        if(opp.getRnd() == 0){
-            opp_im.setImageResource(R.drawable.rock);
-            tv.setText("勝ち");
+        if(win_or_lose == 0){
+            tv.setText("あいこ");
         }
-        else if(opp.getRnd() == 1){
-            opp_im.setImageResource(R.drawable.scissors);
+        else if(win_or_lose == 1){
             tv.setText("負け");
         }
-        else if(opp.getRnd() == 2){
-            opp_im.setImageResource(R.drawable.paper);
-            tv.setText("あいこ");
+        else if(win_or_lose == 2){
+            tv.setText("勝ち");
         }
     }
 }
