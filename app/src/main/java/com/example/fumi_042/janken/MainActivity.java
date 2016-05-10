@@ -24,89 +24,100 @@ public class MainActivity extends AppCompatActivity {
                 add((ImageButton)findViewById(R.id.button03));
             }
         };
+        // クリックイベント
         buttonLists.get(0).setOnClickListener(setMyRock);
         buttonLists.get(1).setOnClickListener(setMyScissors);
         buttonLists.get(2).setOnClickListener(setMyPaper);
     }
+
     // グーのボタンを押した
     private View.OnClickListener setMyRock = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
-            setMyRock(v);
+            ImageView im = (ImageView)findViewById(R.id.imageView);
+            im.setImageResource(R.drawable.rock);
+            setOppHand(v);
         }
     };
+
     // チョキのボタンを押した
     private View.OnClickListener setMyScissors = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
-            setMyScissors(v);
+            ImageView im = (ImageView)findViewById(R.id.imageView);
+            im.setImageResource(R.drawable.scissors);
+            setOppHand(v);
         }
     };
+
     // パーのボタンを押した
     private View.OnClickListener setMyPaper = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //実行したいコード
-            setMyScissors(v);
+            ImageView im = (ImageView)findViewById(R.id.imageView);
+            im.setImageResource(R.drawable.paper);
+            setOppHand(v);
         }
     };
 
-    private void setMyRock(View v){
-        TextView tv = (TextView)findViewById(R.id.textview);
-        ImageView im = (ImageView)findViewById(R.id.imageView);
+    // 相手の手をランダムで決める
+    private void setOppHand(View v){
         Opponent opp = new Opponent();
+        int cpuhand = opp.getRnd();
 
-        if(opp.getRnd() == 0){
-            im.setImageResource(R.drawable.rock);
-            tv.setText("グー：あいこ");
-        }
-        else if(opp.getRnd() == 1){
-            im.setImageResource(R.drawable.scissors);
-            tv.setText("チョキ：勝ち");
-        }
-        else if(opp.getRnd() == 2){
-            im.setImageResource(R.drawable.rock);
-            tv.setText("パー：負け");
+        switch (v.getId()){
+            case R.id.button01:
+                setOppPicture(cpuhand);
+                getWinOrLose(0, cpuhand);
+                break;
+
+            case R.id.button02:
+                setOppPicture(cpuhand);
+                getWinOrLose(1, cpuhand);
+                break;
+
+            case R.id.button03:
+                setOppPicture(cpuhand);
+                getWinOrLose(2, cpuhand);
+                break;
         }
     }
 
-    private void setMyScissors(View v){
-        TextView tv = (TextView)findViewById(R.id.textview);
-        ImageView im = (ImageView)findViewById(R.id.imageView);
-        Opponent opp = new Opponent();
+    // 相手の手をランダムに決めて表示させる
+    private void setOppPicture(int m){
+        int cpuhand = m;
+        ImageView opp_im = (ImageView)findViewById(R.id.imageView2);
 
-        if(opp.getRnd() == 0){
-            im.setImageResource(R.drawable.rock);
-            tv.setText("グー：負け");
+        if(cpuhand == 0){
+            opp_im.setImageResource(R.drawable.rock);
         }
-        else if(opp.getRnd() == 1){
-            im.setImageResource(R.drawable.scissors);
-            tv.setText("チョキ：あいこ");
+        else if(cpuhand == 1){
+            opp_im.setImageResource(R.drawable.scissors);
         }
-        else if(opp.getRnd() == 2){
-            im.setImageResource(R.drawable.paper);
-            tv.setText("パー：勝ち");
+        else if(cpuhand == 2){
+            opp_im.setImageResource(R.drawable.paper);
         }
     }
 
-    private void setMyPaper(View v){
-        TextView tv = (TextView)findViewById(R.id.textview);
-        ImageView im = (ImageView)findViewById(R.id.imageView);
-        Opponent opp = new Opponent();
+    // 勝敗を判定するメソッド
+    private void getWinOrLose(int m, int n){
+        TextView tv = (TextView)findViewById(R.id.textView);
 
-        if(opp.getRnd() == 0){
-            im.setImageResource(R.drawable.rock);
-            tv.setText("グー：勝ち");
+        int userhand = m;
+        int cpuhand = n;
+        int win_or_lose = ((userhand - cpuhand) + 3) % 3;
+
+        if(win_or_lose == 0){
+            tv.setText("あいこ");
         }
-        else if(opp.getRnd() == 1){
-            im.setImageResource(R.drawable.scissors);
-            tv.setText("チョキ：負け");
+        else if(win_or_lose == 1){
+            tv.setText("負け");
         }
-        else if(opp.getRnd() == 2){
-            im.setImageResource(R.drawable.paper);
-            tv.setText("パー：あいこ");
+        else if(win_or_lose == 2){
+            tv.setText("勝ち");
         }
     }
 }
